@@ -7,10 +7,20 @@
 </head>
 <body>
 <div class="container">
-    <h1>Hallo</h1>
-    Datum: <span th:text="${today}"></span>
+    <h1>Radiologie Institut</h1>
+    <p>Hier können Reservierungen für Geräte der Radiologie vorgenommen werden, wenn ein Patient einen Termin hat.</p>
+
+    <p>
+        Hier eine Auflistung aller Möglichkeiten:
+    </p>
     <div>
-        <a href="/patient/list">patient list</a>
+        <ul>
+            <li>Neuen Patient registrieren --> klicken Sie bitte <a href="/patient/add">hier</a></li>
+            <li>Reservierung erfassen --> klicken Sie bitte <a href="/reservation/add">hier</a></li>
+            <li>Alle Reservierungen eines Gerätes anzeigen --> klicken Sie bitte <a href="/reservation/list">hier</a></li>
+            <!--mit dropdown statt link machen-->
+        </ul>
+
     </div>
 </div>
 </body>
