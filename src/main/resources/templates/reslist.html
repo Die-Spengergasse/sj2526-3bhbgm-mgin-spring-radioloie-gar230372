@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>date</th>
+            <th>time</th>
+            <th>patient</th>
+            <th>device</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${reservations}">
+            <td th:text="${r.date}"></td>
+            <td th:text="${r.time}"></td>
+            <td th:text="${r.patient.firstname} + ' ' + ${r.patient.lastname}"></td>
+            <td th:text="${r.device.geräteArt}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/reservation/add">new reservation</a>
+    </p>
+</div>
+</body>
+</html>

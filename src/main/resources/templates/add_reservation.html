@@ -1,12 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Adding a reservation</title>
 </head>
 <body>
-    <h1>Adding a new reservation</h1>
+
+    <div class="container">
+        <h1>Adding a new reservation</h1>
+        <form th:action="@{/reservation/add}" th:object="${reservation}" method="post">
+
+            reservation date
+            <input type="date" th:field="*{date}" class="form-control">
+
+            reservation time
+            <input type="text" th:field="*{time}" class="form-control">
+
+            choose patient
+            <select th:field="*{patient.id}" class="form-control">
+                <option th:each="p : ${patients}" th:value="${p.id}" th:text="${p.firstname} + ' ' + ${p.lastname}"></option>
+            </select>
+
+            choose device
+            <select th:field="*{device.id}" class="form-control">
+                <option th:each="d : ${devices}" th:value="${d.id}" th:text="${d.geräteArt}"></option>
+            </select>
+
+            <input type="submit" class="form-control" value="Save">
+        </form>
+    </div>
 
 </body>
 </html>

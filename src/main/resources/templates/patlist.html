@@ -7,16 +7,23 @@
 </head>
 <body>
 <div class="container">
+    <h1>List of all patients</h1>
     <table class="table">
         <thead>
             <tr>
-                <th>name</th>
+                <th>first name</th>
+                <th>last name</th>
+                <th>svnr</th>
+                <th>gender</th>
                 <th>birth</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="p : ${patients}">
-                <td th:text="${p.name}"></td>
+                <td th:text="${p.firstname}"></td>
+                <td th:text="${p.lastname}"></td>
+                <td th:long="${p.svnr}"></td>
+                <td th:char="${p.gender}"></td>
                 <td th:text="${p.birth}"></td>
             </tr>
         </tbody>

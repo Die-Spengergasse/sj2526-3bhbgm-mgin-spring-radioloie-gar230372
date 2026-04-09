@@ -13,7 +13,7 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private long svnr;
-    private String fristname;
+    private String firstname;
     private String lastname;
     private char gender;
     private LocalDate birth;
@@ -34,12 +34,12 @@ public class Patient {
         this.svnr = svnr;
     }
 
-    public String getFristname() {
-        return fristname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFristname(String fristname) {
-        this.fristname = fristname;
+    public void setFirstname(String fristname) {
+        this.firstname = fristname;
     }
 
     public String getLastname() {
