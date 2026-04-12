@@ -7,6 +7,19 @@
 </head>
 <body>
 <div class="container">
+    <h1>List von Reservierungen</h1>
+    Für welches Gerät möchten sie alle Reservierungen sehen?
+    <form method="get" action="/reservation/list">
+        <select name="deviceId" class="form-control">
+            <option value="">-- Select a device --</option>
+            <option th:each="d : ${devices}"
+                    th:value="${d.id}"
+                    th:text="${d.geräteArt}">
+            </option>
+        </select>
+        <button type="submit" class="btn btn-primary">Show reservations</button>
+    </form>
+
     <table class="table">
         <thead>
         <tr>

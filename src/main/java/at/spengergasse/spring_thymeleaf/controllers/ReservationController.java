@@ -28,9 +28,14 @@ public class ReservationController
     }
 
     @GetMapping("/list")
-    public String reservations(Model model)
+    public String reservations(Model model, Integer deviceId)
     {
-        model.addAttribute("reservations",reservationrepository.findAll());
+        if(deviceId != null){
+            model.addAttribute("reservations",reservationrepository.findByDeviceId(deviceId));
+        }else{
+            model.addAttribute("reservations",reservationrepository.findAll());
+        }
+        model.addAttribute("devices",deviceRepository.findAll());
         return "reslist";
     }
     @GetMapping("/add")
