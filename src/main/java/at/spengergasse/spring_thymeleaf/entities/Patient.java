@@ -12,11 +12,23 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private long svnr;
+    private String svnr;
     private String firstname;
     private String lastname;
     private char gender;
     private LocalDate birth;
+
+    public Patient(int id, String svnr, String firstname, String lastname, char gender, LocalDate birth) {
+        this.id = id;
+        this.svnr = svnr;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.birth = birth;
+    }
+
+    public Patient() {
+    }
 
     public int getId() {
         return id;
@@ -26,11 +38,11 @@ public class Patient {
         this.id = id;
     }
 
-    public long getSvnr() {
+    public String getSvnr() {
         return svnr;
     }
 
-    public void setSvnr(long svnr) {
+    public void setSvnr(String svnr) {
         this.svnr = svnr;
     }
 

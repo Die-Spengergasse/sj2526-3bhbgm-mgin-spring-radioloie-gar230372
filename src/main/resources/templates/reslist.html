@@ -14,20 +14,27 @@
             <th>time</th>
             <th>patient</th>
             <th>device</th>
+            <th>body region</th>
+            <th>comment</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="r : ${reservations}">
             <td th:text="${r.date}"></td>
             <td th:text="${r.time}"></td>
-            <td th:text="${r.patient.firstname} + ' ' + ${r.patient.lastname}"></td>
+            <td th:text="${r.patient.firstname + ' ' + r.patient.lastname}"></td>
             <td th:text="${r.device.geräteArt}"></td>
+            <td th:text="${r.bodyRegion}"></td>
+            <td th:text="${r.comment}"></td>
         </tr>
         </tbody>
     </table>
 
     <p>
         <a href="/reservation/add">new reservation</a>
+    </p>
+    <p>
+        <a href="/">Back to homepage</a>
     </p>
 </div>
 </body>

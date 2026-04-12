@@ -28,9 +28,9 @@ public class ReservationController
     }
 
     @GetMapping("/list")
-    public String reservation(Model model)
+    public String reservations(Model model)
     {
-        model.addAttribute("reservation",reservationrepository.findAll());
+        model.addAttribute("reservations",reservationrepository.findAll());
         return "reslist";
     }
     @GetMapping("/add")

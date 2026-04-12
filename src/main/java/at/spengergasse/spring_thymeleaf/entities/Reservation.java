@@ -19,6 +19,10 @@ public class Reservation {
     @Column
     private String time;
 
+    private String bodyRegion;
+
+    private String comment;
+
     @ManyToOne
     @JoinColumn(name="patient_id")
     private Patient patient;
@@ -33,6 +37,19 @@ public class Reservation {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public Reservation(int id, LocalDate date, String time, String bodyRegion, String comment, Patient patient, Device device) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.bodyRegion = bodyRegion;
+        this.comment = comment;
+        this.patient = patient;
+        this.device = device;
+    }
+
+    public Reservation() {
     }
 
     public Device getDevice() {
@@ -67,5 +84,19 @@ public class Reservation {
         this.date = date;
     }
 
+    public String getBodyRegion() {
+        return bodyRegion;
+    }
 
+    public void setBodyRegion(String bodyRegion) {
+        this.bodyRegion = bodyRegion;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }
