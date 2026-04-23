@@ -75,6 +75,9 @@ public class Patient {
     }
 
     public void setBirth(LocalDate birth) {
+        if (birth.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("birthdate can´t be in the future");
+        }
         this.birth = birth;
     }
 }
