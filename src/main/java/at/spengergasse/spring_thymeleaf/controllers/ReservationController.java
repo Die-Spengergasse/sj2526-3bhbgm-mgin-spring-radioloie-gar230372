@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Controller
@@ -48,16 +49,29 @@ public class ReservationController
     }
 
     @PostMapping("/add")
-    public String addReservation(@ModelAttribute("reservation") Reservation reservation)
+    public String addReservation(@ModelAttribute("reservation") Reservation reservation, Model model)
     {
+        LocalTime newStart = reservation.getTime();
+        LocalTime newEnd = newStart.plusMinutes(30);
+
+        for (Reservation r : reservationrepository.findByDeviceIdAndDate(reservation.getDevice().getId(), reservation.getDate()))
+        {
+            LocalTime existingStart = r.getTime();
+            LocalTime existingEnd = existingStart.plusMinutes(30);
+
+            boolean overlap = newStart.isBefore(existingEnd) && newEnd.isAfter(existingStart);
+
+            if (overlap) {
+                model.addAttribute("errorMessage",
+                        "Gerät bereits reserviert von " + existingStart + " bis " + existingEnd + "!");
+                model.addAttribute("reservation", reservation);
+                model.addAttribute("patients", patientrepository.findAll());
+                model.addAttribute("devices", deviceRepository.findAll());
+                return "add_reservation";
+            }
+        }
         reservationrepository.save(reservation);
         return "redirect:/reservation/list";
     }
 
-    /*
-    @PostMapping("/add1")
-    public String addReservation1(Date date, String time)
-    {
-        return "redirect:/reservation/list";
-    }*/
 }

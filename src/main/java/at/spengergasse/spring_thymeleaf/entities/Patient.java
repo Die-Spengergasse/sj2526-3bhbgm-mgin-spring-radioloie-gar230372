@@ -43,6 +43,10 @@ public class Patient {
     }
 
     public void setSvnr(String svnr) {
+        //svnr dürfen nur zahlen sein
+        if(!svnr.matches("\\d+") && svnr.length() != 10){
+            throw new IllegalArgumentException("SVNR must be numeric");
+        }
         this.svnr = svnr;
     }
 

@@ -42,7 +42,6 @@ public class PatientController {
         return  "redirect:/patient/list";
     }
 
-
     @ExceptionHandler(Exception.class)
     public String errors(Exception exception, Model model) {
         model.addAttribute("error", exception.getMessage());

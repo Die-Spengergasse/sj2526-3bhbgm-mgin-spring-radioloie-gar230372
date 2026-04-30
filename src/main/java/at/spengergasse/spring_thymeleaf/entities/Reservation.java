@@ -3,6 +3,7 @@ package at.spengergasse.spring_thymeleaf.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Reservation {
     private LocalDate date;
 
     @Column
-    private String time;
+    private LocalTime time;
 
     private String bodyRegion;
 
@@ -40,7 +41,7 @@ public class Reservation {
         this.patient = patient;
     }
 
-    public Reservation(int id, LocalDate date, String time, String bodyRegion, String comment, Patient patient, Device device) {
+    public Reservation(int id, LocalDate date, LocalTime time, String bodyRegion, String comment, Patient patient, Device device) {
         this.id = id;
         this.date = date;
         this.time = time;
@@ -69,11 +70,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
