@@ -1,32 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>add new patient</title>
+    <title>Neuen Patienten hinzufügen</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Registrating a new patient</h1>
-        <form th:action="@{/patient/add}" th:object="${patient}" method="post">
-            first name
-            <input type="text" th:field="*{firstname}" class="form-control">
+<div class="container">
+    <h1>Neuen Patienten registrieren</h1>
 
-            last name
-            <input type="text" th:field="*{lastname}" class="form-control">
-
-            svnr
-            <input type="text" th:field="*{svnr}" class="form-control" maxlength="10" inputmode="numeric">
-
-            gender
-            <input type="text" th:field="*{gender}" class="form-control">
-
-            birth date
-            <input type="date" th:field="*{birth}" class="form-control">
-
-            <input type="submit" class="form-control" value="Save">
-        </form>
-
+    <!-- Fehlermeldung anzeigen -->
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <strong>Fehler:</strong> <span th:text="${errorMessage}"></span>
     </div>
+
+    <form th:action="@{/patient/add}" th:object="${patient}" method="post">
+
+        first name
+        <input type="text" th:field="*{firstname}" class="form-control">
+
+        last name
+        <input type="text" th:field="*{lastname}" class="form-control">
+
+        svnr <small class="text-muted">(10 Ziffern, z.B. 1234010190)</small>
+        <input type="text" th:field="*{svnr}" class="form-control" maxlength="10" inputmode="numeric"
+               placeholder="z.B. 1234010190">
+
+        gender
+        <input type="text" th:field="*{gender}" class="form-control">
+
+        birth date
+        <input type="date" th:field="*{birth}" class="form-control">
+
+        <br>
+        <input type="submit" class="btn btn-primary" value="Speichern">
+        <a href="/patient/list" class="btn btn-default">Abbrechen</a>
+    </form>
+</div>
 </body>
 </html>

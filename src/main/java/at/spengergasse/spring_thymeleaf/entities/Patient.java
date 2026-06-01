@@ -43,9 +43,11 @@ public class Patient {
     }
 
     public void setSvnr(String svnr) {
-        //svnr dürfen nur zahlen sein
-        if(!svnr.matches("\\d+") && svnr.length() != 10){
-            throw new IllegalArgumentException("SVNR must be numeric");
+        // SVNR muss genau 10 Ziffern enthalten (kein Buchstaben, keine anderen Zeichen)
+        if (svnr == null || !svnr.matches("\\d{10}")) {
+            throw new IllegalArgumentException(
+                    "Ungültige Sozialversicherungsnummer: Die SVNR muss genau 10 Ziffern enthalten (z.B. 1234010190)."
+            );
         }
         this.svnr = svnr;
     }
@@ -54,8 +56,8 @@ public class Patient {
         return firstname;
     }
 
-    public void setFirstname(String fristname) {
-        this.firstname = fristname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {
@@ -79,8 +81,13 @@ public class Patient {
     }
 
     public void setBirth(LocalDate birth) {
+        if (birth == null) {
+            throw new IllegalArgumentException("Geburtsdatum darf nicht leer sein.");
+        }
         if (birth.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("birthdate can´t be in the future");
+            throw new IllegalArgumentException(
+                    "Ungültiges Geburtsdatum: Das Geburtsdatum (" + birth + ") darf nicht in der Zukunft liegen."
+            );
         }
         this.birth = birth;
     }

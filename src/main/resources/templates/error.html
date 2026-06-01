@@ -1,13 +1,33 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Error</title>
+    <title>Fehler</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1 style="font-family: Arial; font-size: 30px; color: #000000; text-align: center; margin-top: 50px;">
-        Error with input, please try again by klicking on this link (<a href="/patient/add">Back to homepage</a>)
-    </h1>
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-exclamation-sign"></span> Fehler</h3>
+                </div>
+                <div class="panel-body">
+                    <p th:text="${errorMessage}" style="font-size: 16px;">Es ist ein unbekannter Fehler aufgetreten.</p>
+                </div>
+                <div class="panel-footer">
+                    <a th:if="${backLink}" th:href="${backLink}" class="btn btn-default">
+                        &laquo; Zurück
+                    </a>
+                    <a th:unless="${backLink}" href="/" class="btn btn-default">
+                        &laquo; Zur Startseite
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

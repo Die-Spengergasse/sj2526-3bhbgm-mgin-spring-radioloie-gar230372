@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation,Integer> {
+public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
     List<Reservation> findByDeviceId(Integer deviceId);
     List<Reservation> findByDeviceIdAndDate(Integer deviceId, LocalDate date);
+    List<Reservation> findByPatientIdAndDate(Integer patientId, LocalDate date);
 }
